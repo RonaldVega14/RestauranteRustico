@@ -10,7 +10,7 @@
 </head>
 <body>
 	<h3>${message}</h3>
-	<form:form method = "POST" action = "${pageContext.request.contextPath}/actualizarEmpleado" ModelAttribute = "empleado">
+	<form:form method = "POST" action = "${pageContext.request.contextPath}/actualizarEmpleado?id=${Sucursal}" ModelAttribute = "empleado">
 		<table>
 			<thead>
 				<tr>
@@ -38,11 +38,11 @@
 				<tr>
 					<td>Estado del empleado:</td>
 					<td>${empleado.estadoMod}</td>
-					<td><input type = "text" name = "estadoMod" path = "estadoMod" value = "${empleado.estadoMod}"></td>
+					<td><input type = "text" name = "eEstado" path = "eEstado" value = "${empleado.estadoMod}"></td>
 				</tr>
 			</tbody>
 		</table>
-		<input type = "submit" name = "editarEmpleado" value = "Editar">
+		<input type = "submit" name = "editarEmpleado" value = "editarEmpleado">
 	</form:form>
 </body>
 </html>

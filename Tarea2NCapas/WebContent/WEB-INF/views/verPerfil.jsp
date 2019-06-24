@@ -37,14 +37,15 @@
 			        <td class="text-center">${empleados.eGenero}</td>
 			        <td class="text-center">${empleados.estadoMod}</td>
 			        <td class="text-center">
-			        	<button class='btn btn-info btn-xs' type="button" onclick="window.location.href = '${pageContext.request.contextPath}/editarEmpleado?id=${sucursal.sId}&eid=${empleados.eId}'"><span class="glyphicon glyphicon-edit"></span>Editar</button>
-			        	<button class="btn btn-danger btn-xs" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/borrarEmpleado?id=${sucursal.sId}&eid=${empleados.eId}'"><span class="glyphicon glyphicon-remove"></span>Borrar</button>
+			        	<button class='btn btn-info btn-xs' type="button" onclick="window.location.href = '${pageContext.request.contextPath}/editarEmpleado?id=${sucursal.sId}&eid=${empleados.eId}'">Editar</button>
+			        	<button class="btn btn-danger btn-xs" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/borrarEmpleado?id=${sucursal.sId}&eid=${empleados.eId}'">Borrar</button>
 			        </td>
 			    </tr>
 			    </c:forEach>
 		    </table>  
 	    </div>
+		<button class="btn btn-primary btn-xs pull-center" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/home'">Regresar</button>
+		<button class="btn btn-primary btn-xs pull-center" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/agregarEmpleado'">Agregar empleado</button>
 	</div>
-	<button class="btn btn-primary btn-xs pull-center" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/home'">Regresar</button>
 </body>
 </html>

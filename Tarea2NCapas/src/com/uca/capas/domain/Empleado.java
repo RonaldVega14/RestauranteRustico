@@ -18,8 +18,8 @@ import javax.validation.constraints.NotNull;
 public class Empleado {
 	
 	@Id
-	@GeneratedValue(generator = "empleado_id_empleado_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "empleado_id_empleado_seq", sequenceName = "public.empleado_id_empleado_seq", allocationSize = 1)
+	@GeneratedValue(generator = "empleado_c_empleado_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "empleado_c_empleado_seq", sequenceName = "public.empleado_c_empleado_seq", allocationSize = 1)
 	@Column(name = "id_empleado")
 	private Integer id_empleado;
 
@@ -109,6 +109,7 @@ public class Empleado {
 
 	public String getEstadoMod() {
 		return this.eEstado == null ? "" : this.eEstado == true ? "Activo" : "Inactivo";
-}
+	}
+
 
 }

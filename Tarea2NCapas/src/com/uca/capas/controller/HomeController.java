@@ -42,7 +42,7 @@ public class HomeController {
 			e.printStackTrace();
 			mav.addObject("message", "No se pudo obtener las sucursales");
 		}
-
+		mav.addObject("message", "Bienvenidos a Rustico");
 		return mav;
 	}
 
@@ -153,6 +153,7 @@ public class HomeController {
 		Empleado empleado = new Empleado();
 		try {
 			empleado = empleadoService.getEmpleadoById(eId);
+			empleadoService.deleteEmpleado(eId);
 		} catch (Exception e) {
 			mav.addObject("message", "No se pudo recuperar la sucursal solicitada");
 			mav.setViewName("redirect:/home");
@@ -164,24 +165,79 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/actualizarEmpleado")
-	public ModelAndView actualizarEmpleado(@ModelAttribute Empleado empleado) {
+	public ModelAndView actualizarEmpleado(@Valid @ModelAttribute Empleado empleado, BindingResult result,
+			@RequestParam("id") Long sId) {
 		ModelAndView mav = new ModelAndView();
+		Sucursal sucursal = new Sucursal();
+		String estado;
 		try {
+			sucursal = sucursalService.getSucursalById(sId);
+			empleado.setempleado_sucursal(sucursal);
+			estado = empleado.getEstadoMod();
+			if(estado == "Activo") {
+				empleado.seteEstado(true);
+			}else {
+				empleado.seteEstado(false);
+			}
 			empleadoService.saveEmpleado(empleado);
-		} catch(Exception e) {
+		} catch (Exception e) {
+			mav.addObject("message", "No se pudo recuperar la sucursal solicitada");
+			
 			e.printStackTrace();
-			mav.addObject("message", "El empleado no pudo ser editado.");
-		}
-		List<Sucursal> sucursales = null;
-		try {
-			sucursales = sucursalService.getAllSucursales();
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		mav.addObject("sucursales", sucursales);
+		}			
+		mav.setViewName("redirect:/home");
 		mav.addObject("message", "Empleado editado.");
-		mav.setViewName("home");
+		
 		return mav;
 	}
+	
+	@RequestMapping("/borrarEmpleado")
+	public ModelAndView eliminarEmpleado(@RequestParam(value = "id") Long sId,
+			@RequestParam(value = "eid") Integer eId) {
+		ModelAndView mav = new ModelAndView();
+		Empleado empleado = new Empleado();
+		try {
+			empleado = empleadoService.getEmpleadoById(eId);
+			empleadoService.deleteEmpleado(eId);
+		} catch (Exception e) {
+			mav.addObject("message", "No se pudo eliminar al empleado");
+			e.printStackTrace();
+		}			
+		mav.setViewName("redirect:/home");
+		mav.addObject("message", "Empleado editado.");
+		
+		return mav;
+	}
+	
+	@RequestMapping("/agregarEmpleado")
+	public ModelAndView agregarEmpleado() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("empleado", new Empleado());
+		mav.setViewName("agregarEmpleado");
+		return mav;
+	}
+	
+	@RequestMapping("/guardarEmpleado")
+	public ModelAndView guardarEmpleado(@Valid @ModelAttribute Empleado empleado, BindingResult result) {
+		ModelAndView mav = new ModelAndView();
+		String estado;
+		if (result.hasErrors()) {
+			mav.setViewName("agregarEmpleado");
+			mav.addObject("message", "Ocurrio un problema para agregar sucursal");
+		} else {
+			estado = empleado.getEstadoMod();
+			if(estado == "Activo") {
+				empleado.seteEstado(true);
+			}else {
+				empleado.seteEstado(false);
+			}
+			empleadoService.saveEmpleado(empleado);
+			mav.setViewName("redirect:/home");
+			mav.addObject("message", "Empleado agregado con éxito");
+			return mav;
+		}
+		return mav;
+	}
+	
 
 }

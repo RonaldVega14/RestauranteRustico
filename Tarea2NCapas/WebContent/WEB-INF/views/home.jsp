@@ -15,10 +15,8 @@
 </head>
 <body>
 <div class="container">
-<div class="row col-md-6 col-md-offset-2">
-<h1>${message}</h1>
-</div>
 	    <div class="row col-md-6 col-md-offset-2">
+	    <h1>${message}</h1>
 		    <table class="table table-hover">
 			    <thead>
 				    <tr>
@@ -40,8 +38,8 @@
 			    </c:forEach>
 		    </table>
 		    <form:form action = "${pageContext.request.contextPath}/agregar" method = "POST">
-			<input type = "submit" value = "Agregar Sucursal">
-		</form:form>
+			<input class="btn btn-primary btn-xs pull-center" type = "submit" value = "Agregar Sucursal">
+			</form:form>
 	    </div>
 	    
 	</div>
