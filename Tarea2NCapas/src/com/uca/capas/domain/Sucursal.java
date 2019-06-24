@@ -17,10 +17,10 @@ import javax.persistence.Table;
 public class Sucursal {
 	
 	@Id
-	@GeneratedValue(generator = "sucursal_id_sucursal_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "sucursal_id_sucursal_seq", sequenceName = "public.sucursal_id_sucursal_seq", allocationSize = 1)
+	@GeneratedValue(generator = "sucursal_c_sucursal_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "sucursal_c_sucursal_seq", sequenceName = "public.sucursal_c_sucursal_seq", allocationSize = 1)
 	@Column(name = "id_sucursal")
-	private Integer sId;
+	private Long sId;
 
 	@Column(name = "sucursal_nombre")
 	private String sNombre;
@@ -40,11 +40,11 @@ public class Sucursal {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "empleado_sucursal")
 	private List<Empleado> sEmpleados;
 	
-	public Integer getsId() {
+	public Long getsId() {
 		return sId;
 	}
 
-	public void setsId(Integer sId) {
+	public void setsId(Long sId) {
 		this.sId = sId;
 	}
 
@@ -100,7 +100,7 @@ public class Sucursal {
 
 	}
 
-	public Sucursal(Integer sId, String sNombre, String sUbicacion, String sHorarios, Integer sNMesas,
+	public Sucursal(Long sId, String sNombre, String sUbicacion, String sHorarios, Integer sNMesas,
 			String sNomGerente, List<Empleado> sEmpleados) {
 		super();
 		this.sId = sId;

@@ -1,5 +1,6 @@
 package com.uca.capas.controller;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,9 @@ import com.uca.capas.service.UsuarioService;
 
 @Controller
 public class LoginController {
+	
+
+static Logger log = Logger.getLogger(LoginController.class.getName());
 
 	@Autowired
 	UsuarioService usuarioService;

@@ -8,9 +8,9 @@ public interface SucursalService {
 
 	public List<Sucursal> getAllSucursales();
 
-	public Sucursal getSucursalById(Integer id);
+	public Sucursal getSucursalById(Long id);
 
 	public Sucursal saveSucursal(Sucursal sucursal);
 
-	public void deleteSucursal(Integer id);
+	public void deleteSucursal(Long id);
 }

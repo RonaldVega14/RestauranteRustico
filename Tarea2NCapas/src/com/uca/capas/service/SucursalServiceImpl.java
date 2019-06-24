@@ -20,7 +20,7 @@ public class SucursalServiceImpl implements SucursalService {
 	}
 
 	@Override
-	public Sucursal getSucursalById(Integer id) {
+	public Sucursal getSucursalById(Long id) {
 		return sucursalRepository.findOne(id);
 	}
 
@@ -30,7 +30,7 @@ public class SucursalServiceImpl implements SucursalService {
 	}
 
 	@Override
-	public void deleteSucursal(Integer id) {
+	public void deleteSucursal(Long id) {
 		sucursalRepository.delete(id);
 	}
 

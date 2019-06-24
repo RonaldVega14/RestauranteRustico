@@ -15,8 +15,11 @@
 </head>
 <body>
 <div class="container">
+<div class="row col-md-6 col-md-offset-2">
+<h1>${message}</h1>
+</div>
 	    <div class="row col-md-6 col-md-offset-2">
-		    <table class="table table-striped custab">
+		    <table class="table table-hover">
 			    <thead>
 				    <tr>
 				    	<th class="text-center">Nombre de la sucursal</th>
@@ -29,15 +32,18 @@
 			        <td class="text-center"><b>${sucursales.sNombre}</b></td>
 			        <td class="text-center">${sucursales.sUbicacion}</td>
 			        <td class="text-center">
-			        	<button class='btn btn-info btn-xs' type="button" onclick="window.location.href = '${pageContext.request.contextPath}/ver?id=${sucursales.sId}'"><span class="glyphicon glyphicon-edit"></span>Ver perfil</button>
-			        	<button class='btn btn-info btn-xs' type="button" onclick="window.location.href = '${pageContext.request.contextPath}/editar?id=${sucursales.sId}'"><span class="glyphicon glyphicon-edit"></span>Editar</button>
-			        	<button class="btn btn-danger btn-xs" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/borrar?id=${sucursales.sId}'"><span class="glyphicon glyphicon-remove"></span>Borrar</button>
+			        	<button class='btn btn-info btn-xs' type="button" onclick="window.location.href = '${pageContext.request.contextPath}/verPerfil?id=${sucursales.sId}'">Ver perfil</button>
+			        	<button class='btn btn-info btn-xs' type="button" onclick="window.location.href = '${pageContext.request.contextPath}/editar?id=${sucursales.sId}'">Editar</button>
+			        	<button class="btn btn-danger btn-xs" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/eliminar?id=${sucursales.sId}'">Eliminar</button>
 			        </td>
 			    </tr>
 			    </c:forEach>
 		    </table>
-		    <button class="btn btn-primary btn-xs pull-right" type="button" onclick="window.location.href = '${pageContext.request.contextPath}/agregar'"><b>+</b>Agregar nueva sucursal</button>
+		    <form:form action = "${pageContext.request.contextPath}/agregar" method = "POST">
+			<input type = "submit" value = "Agregar Sucursal">
+		</form:form>
 	    </div>
+	    
 	</div>
 
 </body>
